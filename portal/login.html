@@ -27,16 +27,16 @@
     <form id="login-form" onsubmit="handleLogin(event)" class="space-y-4 text-xs">
       <div>
         <label class="block text-slate-400 mb-1 font-medium">ईमेल आईडी</label>
-        <input type="email" id="login-email" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-3 text-white font-mono focus:outline-none focus:border-amber-500" placeholder="name@company.com">
+        <input type="email" id="login-email" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-3 text-white font-mono focus:outline-none focus:border-amber-500 transition" placeholder="name@company.com">
       </div>
 
       <div>
         <label class="block text-slate-400 mb-1 font-medium">पासवर्ड / पिन</label>
-        <input type="password" id="login-password" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-3 text-white font-mono focus:outline-none focus:border-amber-500" placeholder="••••••••">
+        <input type="password" id="login-password" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-3 text-white font-mono focus:outline-none focus:border-amber-500 transition" placeholder="••••••••">
       </div>
 
-      <button type="submit" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold py-3 rounded-xl transition shadow-lg shadow-amber-500/20 text-sm">
-        सिक्योर लॉगिन करें
+      <button type="submit" id="login-btn" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold py-3 rounded-xl transition shadow-lg shadow-amber-500/20 text-sm flex items-center justify-center space-x-2">
+        <span id="btn-text">सिक्योर लॉगिन करें</span>
       </button>
     </form>
 
@@ -63,35 +63,68 @@
   <script>
     async function handleLogin(event) {
       event.preventDefault();
-      const email = document.getElementById('login-email').value;
-      const password = document.getElementById('login-password').value;
+      const emailInput = document.getElementById('login-email');
+      const passwordInput = document.getElementById('login-password');
+      const loginBtn = document.getElementById('login-btn');
+      const btnText = document.getElementById('btn-text');
+
+      const email = emailInput.value.trim();
+      const password = passwordInput.value;
+
+      // Loading state enable karein
+      loginBtn.disabled = true;
+      loginBtn.classList.add('opacity-70', 'cursor-not-allowed');
+      btnText.textContent = "लॉगिन हो रहा है...";
 
       try {
         // Firebase Authentication Sign-in
         const userCredential = await firebase.auth().signInWithEmailAndPassword(email, password);
         const user = userCredential.user;
 
-        // Firestore से यूजर का रोल और कंपनी डेटा फेच करना
-        const userDoc = await window.db.collection('users').doc(user.uid).get();
-        
-        let role = 'driver'; // डिफ़ॉल्ट रोल
+        // Firestore se user role aur company data fetch karna
+        let role = 'driver';
         let companyId = 'default_company';
 
-        if (userDoc.exists) {
-          role = userDoc.data().role || 'driver';
-          companyId = userDoc.data().companyId || 'default_company';
+        if (window.db) {
+          const userDoc = await window.db.collection('users').doc(user.uid).get();
+          if (userDoc.exists) {
+            role = userDoc.data().role || 'driver';
+            companyId = userDoc.data().companyId || 'default_company';
+          }
         }
 
-        // AachicoAuth इंजन के जरिए सेशन और मल्टी-डिवाइस लॉक सेट करना और रीडायरेक्ट करना
-        window.AachicoAuth.loginUser({
-          uid: user.uid,
-          email: user.email,
-          role: role,
-          companyId: companyId
-        });
+        // AachicoAuth engine ke zariye session set karna
+        if (window.AachicoAuth && typeof window.AachicoAuth.loginUser === 'function') {
+          window.AachicoAuth.loginUser({
+            uid: user.uid,
+            email: user.email,
+            role: role,
+            companyId: companyId
+          });
+        } else {
+          // Fallback redirect agar AachicoAuth load na ho
+          window.location.href = `../dashboards/${role}.html`;
+        }
 
       } catch (error) {
-        alert("लॉगिन असफल: " + error.message);
+        console.error("Login Error:", error);
+        let errorMsg = error.message;
+        
+        // User-friendly Hindi error messages
+        if (error.code === 'auth/wrong-password' || error.code === 'auth/user-not-found' || error.code === 'auth/invalid-credential') {
+          errorMsg = "गलत ईमेल या पासवर्ड दर्ज किया गया है। कृपया पुनः प्रयास करें।";
+        } else if (error.code === 'auth/invalid-email') {
+          errorMsg = "अमान्य ईमेल format है।";
+        } else if (error.code === 'auth/too-many-requests') {
+          errorMsg = "बहुत ्यादा असफल प्रयासों के कारण अकाउंट अस्थायी रूप से लॉक है। थोड़ी देर बाद कोशिश करें।";
+        }
+
+        alert("लॉगिन असफल: " + errorMsg);
+        
+        // Button reset karein
+        loginBtn.disabled = false;
+        loginBtn.classList.remove('opacity-70', 'cursor-not-allowed');
+        btnText.textContent = "सिक्योर लॉगिन करें";
       }
     }
 
