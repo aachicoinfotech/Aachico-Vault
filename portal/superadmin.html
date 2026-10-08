@@ -27,7 +27,7 @@
           <i data-lucide="shield-check" class="w-3.5 h-3.5 text-sky-400"></i>
           <span>एडमिन पोर्टल</span>
         </a>
-        <button onclick="window.AachicoAuth.logout()" class="inline-flex items-center space-x-1 text-xs font-bold bg-rose-950/40 hover:bg-rose-900/60 text-rose-300 px-3 py-2 rounded-xl border border-rose-800/60 transition">
+        <button onclick="window.AachicoAuth && window.AachicoAuth.logout()" class="inline-flex items-center space-x-1 text-xs font-bold bg-rose-950/40 hover:bg-rose-900/60 text-rose-300 px-3 py-2 rounded-xl border border-rose-800/60 transition">
           <i data-lucide="log-out" class="w-3.5 h-3.5"></i>
           <span>लॉगआउट</span>
         </button>
@@ -99,6 +99,7 @@
     <p>Aachico Vault Superadmin Master Control — Secured by Aachico Infotech</p>
   </footer>
 
+  <!-- Firebase & Auth Engine Scripts -->
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
@@ -111,34 +112,65 @@
 
     async function loadSuperadminData() {
       try {
-        const vRes = await fetchAllVehicles();
-        if (vRes && vRes.success) {
-          document.getElementById('super-stat-vehicles').textContent = vRes.data.length;
+        if (typeof fetchAllVehicles === 'function') {
+          const vRes = await fetchAllVehicles();
+          if (vRes && vRes.success && vRes.data) {
+            document.getElementById('super-stat-vehicles').textContent = vRes.data.length;
+          }
         }
 
-        const dRes = await fetchAllDrivers();
-        if (dRes && dRes.success) {
-          document.getElementById('super-stat-drivers').textContent = dRes.data.length;
+        if (typeof fetchAllDrivers === 'function') {
+          const dRes = await fetchAllDrivers();
+          if (dRes && dRes.success && dRes.data) {
+            document.getElementById('super-stat-drivers').textContent = dRes.data.length;
+          }
         }
       } catch (err) {
         console.log("Data load note:", err);
       }
     }
 
-    document.getElementById('backup-btn').addEventListener('click', () => {
-      alert("मास्टर डेटाबेस बैकअप फाइल सफलता पूर्वक जनरेट और डाउनलोड हो गई है!");
+    document.getElementById('backup-btn').addEventListener('click', async () => {
+      try {
+        let backupData = {
+          exportedAt: new Date().toISOString(),
+          app: "Aachico Vault",
+          localStorageData: { ...localStorage }
+        };
+        
+        // Agar Firestore db available hai toh collections bhi backup me le sakte hain
+        if (window.db) {
+          const vehiclesSnap = await window.db.collection('vehicles').get();
+          backupData.vehicles = vehiclesSnap.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        }
+
+        const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(backupData, null, 2));
+        const downloadAnchor = document.createElement('a');
+        downloadAnchor.setAttribute("href", dataStr);
+        downloadAnchor.setAttribute("download", `aachico_vault_backup_${Date.now()}.json`);
+        document.body.appendChild(downloadAnchor);
+        downloadAnchor.click();
+        downloadAnchor.remove();
+
+        alert("मास्टर डेटाबेस बैकअप फाइल सफलता पूर्वक जनरेट और डाउनलोड हो गई है!");
+      } catch (e) {
+        console.error(e);
+        alert("बैकअप लेने में त्रुटि: " + e.message);
+      }
     });
 
     document.getElementById('refresh-cache-btn').addEventListener('click', () => {
-      localStorage.clear();
-      sessionStorage.clear();
-      alert("सिस्टम कैशे और लोकल स्टोरेज साफ़ कर दिए गए हैं!");
-      window.location.reload();
+      if (confirm("क्या आप वाकई सभी लोकल कैशे और सेशन साफ़ करना चाहते हैं?")) {
+        localStorage.clear();
+        sessionStorage.clear();
+        alert("सिस्टम कैशे और लोकल स्टोरेज साफ़ कर दिए गए हैं!");
+        window.location.reload();
+      }
     });
 
     window.addEventListener('DOMContentLoaded', () => {
       lucide.createIcons();
-      if (window.AachicoAuth) {
+      if (window.AachicoAuth && typeof window.AachicoAuth.protectPage === 'function') {
         window.AachicoAuth.protectPage(['superadmin']);
       }
       loadSuperadminData();
