@@ -31,41 +31,41 @@
     <form id="signup-form" onsubmit="handleSignup(event)" class="space-y-4 text-xs">
       <div>
         <label class="block text-slate-400 mb-1 font-medium">कंपनी या ट्रेवल्स का नाम (Company Name)</label>
-        <input type="text" id="signup-company" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-3 text-white focus:outline-none focus:border-amber-500" placeholder="ATR Travels Udaipur">
+        <input type="text" id="signup-company" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-3 text-white focus:outline-none focus:border-amber-500 transition" placeholder="ATR Travels Udaipur">
       </div>
       
       <div class="grid grid-cols-2 gap-3">
         <div>
           <label class="block text-slate-400 mb-1 font-medium">ओनर का नाम</label>
-          <input type="text" id="signup-owner" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-3 text-white focus:outline-none focus:border-amber-500" placeholder="राजेश सिंह">
+          <input type="text" id="signup-owner" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-3 text-white focus:outline-none focus:border-amber-500 transition" placeholder="राजेश सिंह">
         </div>
         <div>
           <label class="block text-slate-400 mb-1 font-medium">मोबाइल नंबर</label>
-          <input type="tel" id="signup-phone" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-3 text-white font-mono focus:outline-none focus:border-amber-500" placeholder="9829000000">
+          <input type="tel" id="signup-phone" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-3 text-white font-mono focus:outline-none focus:border-amber-500 transition" placeholder="9829000000">
         </div>
       </div>
 
       <div>
         <label class="block text-slate-400 mb-1 font-medium">ईमेल आईडी (Email)</label>
-        <input type="email" id="signup-email" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-3 text-white focus:outline-none focus:border-amber-500" placeholder="name@company.com">
+        <input type="email" id="signup-email" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-3 text-white focus:outline-none focus:border-amber-500 transition" placeholder="name@company.com">
       </div>
 
       <div>
         <label class="block text-slate-400 mb-1 font-medium">लॉगिन पासवर्ड बनाएं (Password)</label>
-        <input type="password" id="signup-password" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-3 text-white font-mono focus:outline-none focus:border-amber-500" placeholder="••••••••">
+        <input type="password" id="signup-password" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-3 text-white font-mono focus:outline-none focus:border-amber-500 transition" placeholder="••••••••">
       </div>
 
       <div>
         <label class="block text-slate-400 mb-1 font-medium">अकाउंट का प्रकार (Role)</label>
-        <select id="signup-role" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-3 text-white focus:outline-none focus:border-amber-500">
+        <select id="signup-role" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-3 text-white focus:outline-none focus:border-amber-500 transition">
           <option value="admin">कंपनी एडमिन (Owner)</option>
           <option value="manager">मैनेजर डेस्क</option>
           <option value="driver">ड्राइवर</option>
         </select>
       </div>
 
-      <button type="submit" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold py-3 rounded-xl transition shadow-lg shadow-amber-500/20 text-sm">
-        अकाउंट बनाएं और शुरू करें (Free)
+      <button type="submit" id="signup-btn" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold py-3 rounded-xl transition shadow-lg shadow-amber-500/20 text-sm flex items-center justify-center space-x-2">
+        <span id="signup-btn-text">अकाउंट बनाएं और शुरू करें (Free)</span>
       </button>
     </form>
 
@@ -92,43 +92,74 @@
   <script>
     async function handleSignup(event) {
       event.preventDefault();
-      const companyName = document.getElementById('signup-company').value;
-      const ownerName = document.getElementById('signup-owner').value;
-      const phone = document.getElementById('signup-phone').value;
-      const email = document.getElementById('signup-email').value;
+      const companyName = document.getElementById('signup-company').value.trim();
+      const ownerName = document.getElementById('signup-owner').value.trim();
+      const phone = document.getElementById('signup-phone').value.trim();
+      const email = document.getElementById('signup-email').value.trim();
       const password = document.getElementById('signup-password').value;
       const role = document.getElementById('signup-role').value;
 
+      const signupBtn = document.getElementById('signup-btn');
+      const signupBtnText = document.getElementById('signup-btn-text');
+
+      // Loading state enable karein
+      signupBtn.disabled = true;
+      signupBtn.classList.add('opacity-70', 'cursor-not-allowed');
+      signupBtnText.textContent = "अकाउंट बन रहा है...";
+
       try {
-        // Firebase Auth में नया यूजर रजिस्टर करना
+        // Firebase Auth me naya user register karna
         const userCredential = await firebase.auth().createUserWithEmailAndPassword(email, password);
         const user = userCredential.user;
 
         const companyId = 'comp_' + Math.random().toString(36).substring(2, 9);
 
-        // Firestore डेटाबेस में यूजर का पूरा प्रोफाइल सेव करना
-        await window.db.collection('users').doc(user.uid).set({
-          email: email,
-          companyName: companyName,
-          ownerName: ownerName,
-          phone: phone,
-          companyId: companyId,
-          role: role,
-          createdAt: new Date().toISOString()
-        });
+        // Firestore database me user ka pura profile save karna
+        if (window.db) {
+          await window.db.collection('users').doc(user.uid).set({
+            email: email,
+            companyName: companyName,
+            ownerName: ownerName,
+            phone: phone,
+            companyId: companyId,
+            role: role,
+            createdAt: new Date().toISOString()
+          });
+        }
 
         alert("बधाई हो! आपका फ्री अकाउंट सफलतापूर्वक बन गया है।");
 
-        // AachicoAuth इंजन के जरिए लॉगिन कराकर सही रोल/डैशबोर्ड पर रीडायरेक्ट करना
-        window.AachicoAuth.loginUser({
-          uid: user.uid,
-          email: email,
-          role: role,
-          companyId: companyId
-        });
+        // AachicoAuth engine ke zariye login kara kar redirect karna
+        if (window.AachicoAuth && typeof window.AachicoAuth.loginUser === 'function') {
+          window.AachicoAuth.loginUser({
+            uid: user.uid,
+            email: email,
+            role: role,
+            companyId: companyId
+          });
+        } else {
+          window.location.href = `../dashboards/${role}.html`;
+        }
 
       } catch (error) {
-        alert("साइनअप असफल: " + error.message);
+        console.error("Signup Error:", error);
+        let errorMsg = error.message;
+
+        if (error.code === 'auth/email-already-in-use') {
+          errorMsg = "यह ईमेल आईडी पहले से रजिस्टर है। कृपया लॉगिन करें या दूसरी ईमेल का उपयोग करें।";
+        } else if (error.code === 'auth/weak-password') {
+          errorMsg = "पासवर्ड बहुत कमज़ोर है। कृपया कम से कम 6 अंकों/अक्षरों का पासवर्ड बनाएं।";
+        } else if (error.code === 'auth/invalid-email') {
+          errorMsg = "अमान्य ईमेल format है।";
+        }
+
+        alert("साइनअप असफल: " + errorMsg);
+        
+        // Button reset karein
+        signupBtn.disabled = false;
+        signupBtn.classList.add('hover:bg-amber-400');
+        signupBtn.classList.remove('opacity-70', 'cursor-not-allowed');
+        signupBtnText.textContent = "अकाउंट बनाएं और शुरू करें (Free)";
       }
     }
 
