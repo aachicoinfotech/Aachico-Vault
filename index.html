@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="hi" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aachico Vault - Smart Fleet OS & Ledger Management</title>
+  
+  <meta name="description" content="भारत का सबसे भरोसेमंद फ्लीट व लेज़र मैनेजमेंट सिस्टम। डिजिटल मीटर ऑडिट, 4-कार्ड ड्राइवर कैश लेज़र और WhatsApp इनवॉइसिंग।" />
+  <link rel="manifest" href="./manifest.json">
+  <meta name="theme-color" content="#020617" />
+  
+  <!-- Tailwind CSS & Lucide Icons -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- Master Theme & Responsive CSS Architecture -->
+  <link rel="stylesheet" href="./css/themes.css">
+
+  <!-- Adsterra Monetization Scripts (Social Bar & Popunder) -->
+  <script src="https://pl31151923.profitableratecpmnetwork.com/51/cd/c0/51cdc0777c0281a5bee5cd02bd67d97c.js"></script>
+  <script src="https://pl31151922.profitableratecpmnetwork.com/19/dd/f9/19ddf9ecf7656b128bef1db758fc1ab2.js"></script>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col selection:bg-amber-500 selection:text-slate-950">
+
+  <!-- ================= NAVBAR ================= -->
+  <header class="sticky top-0 z-50 glass-card border-b border-slate-800/80 bg-slate-950/90">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      
+      <!-- Logo -->
+      <a href="index.html" class="flex items-center space-x-3 group">
+        <div class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center font-black text-xl border border-amber-500/40 group-hover:scale-105 transition shadow-lg shadow-amber-500/10">
+          V
+        </div>
+        <div>
+          <span class="font-extrabold text-base tracking-wider text-white flex items-center space-x-1">
+            <span>AACHICO</span>
+            <span class="text-amber-400">VAULT</span>
+          </span>
+          <p class="text-[10px] text-slate-400 tracking-wider">SMART FLEET OS</p>
+        </div>
+      </a>
+
+      <!-- Quick Portals Links -->
+      <nav class="hidden md:flex items-center space-x-6 text-xs font-semibold text-slate-300">
+        <a href="#features" class="hover:text-amber-400 transition">फीचर्स (Features)</a>
+        <a href="#pricing" class="hover:text-amber-400 transition">प्लान्स (Pricing)</a>
+        <a href="manager.html" class="hover:text-teal-400 transition flex items-center space-x-1">
+          <i data-lucide="receipt" class="w-3.5 h-3.5"></i>
+          <span>मैनेजर डेस्क</span>
+        </a>
+        <a href="driver.html" class="hover:text-emerald-400 transition flex items-center space-x-1">
+          <i data-lucide="steering-wheel" class="w-3.5 h-3.5"></i>
+          <span>ड्राइवर ऐप</span>
+        </a>
+      </nav>
+
+      <!-- Login & Signup Buttons -->
+      <div class="flex items-center space-x-2">
+        <a href="login.html" class="inline-flex items-center space-x-1 text-xs font-bold bg-slate-900 hover:bg-slate-800 text-slate-200 px-3 py-2 rounded-xl border border-slate-700 transition">
+          <span>लॉगिन</span>
+        </a>
+        <a href="signup.html" class="inline-flex items-center space-x-1.5 text-xs font-bold bg-amber-500 hover:bg-amber-400 text-slate-950 px-3.5 py-2 rounded-xl transition shadow-md shadow-amber-500/20">
+          <span>फ्री साइनअप</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= HERO SECTION ================= -->
+  <section class="relative pt-16 pb-20 md:pt-24 md:pb-28 overflow-hidden text-center">
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[30rem] h-[30rem] bg-amber-500/10 rounded-full blur-3xl pointer-events-none -z-10"></div>
+
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+      <div class="inline-flex items-center space-x-2 bg-amber-500/10 border border-amber-500/30 px-3.5 py-1.5 rounded-full text-xs text-amber-300 font-medium">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span>Aachico Vault - Version 1.0 Live</span>
+      </div>
+
+      <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight">
+        टैक्सी व ट्रांसपोर्ट ऑपरेटरों के लिए <br class="hidden sm:block" />
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-300 to-yellow-400">
+          भारत का सबसे स्मार्ट फ़्लीट व खाता OS
+        </span>
+      </h1>
+
+      <p class="text-sm sm:text-base text-slate-400 max-w-2xl mx-auto leading-relaxed">
+        गाड़ियों के फर्जी बिल, डीज़ल माइलेज चोरी और ड्राइवर कैश का झंझट खत्म। डिजिटल मीटर फोटो ऑडिट, 4-कार्ड ड्राइवर लेज़र और मैनेजर इनवॉइसिंग अब एक ही सिस्टम में।
+      </p>
+
+      <!-- Portals Fast-Access Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-3xl mx-auto pt-6 text-left">
+        <!-- Admin Entry -->
+        <a href="admin.html" class="glass-card glass-card-hover p-4 rounded-2xl border border-sky-500/30 group block">
+          <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 rounded-xl bg-sky-500/10 text-sky-400 flex items-center justify-center font-bold">
+              <i data-lucide="shield-check" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <h4 class="text-xs font-bold text-white group-hover:text-sky-400 transition">कंपनी एडमिन (Owner)</h4>
+              <p class="text-[10px] text-slate-400">फ्लीट, गाड़ियाँ, फुल रिपोर्ट</p>
+            </div>
+          </div>
+        </a>
+
+        <!-- Manager Entry -->
+        <a href="manager.html" class="glass-card glass-card-hover p-4 rounded-2xl border border-teal-500/30 group block">
+          <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 rounded-xl bg-teal-500/10 text-teal-400 flex items-center justify-center font-bold">
+              <i data-lucide="receipt" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <h4 class="text-xs font-bold text-teal-300 group-hover:text-teal-400 transition">मैनेजर ऑपरेशन्स</h4>
+              <p class="text-[10px] text-slate-400">बिलिंग, इनवॉइस व बकाया</p>
+            </div>
+          </div>
+        </a>
+
+        <!-- Driver Entry -->
+        <a href="driver.html" class="glass-card glass-card-hover p-4 rounded-2xl border border-emerald-500/30 group block">
+          <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center font-bold">
+              <i data-lucide="steering-wheel" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <h4 class="text-xs font-bold text-emerald-400 group-hover:text-emerald-300 transition">ड्राइवर ऐप (Driver)</h4>
+              <p class="text-[10px] text-slate-400">मीटर KM, डीज़ल व ट्रिप</p>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= KEY FEATURES ================= -->
+  <section id="features" class="py-16 bg-slate-900/40 border-y border-slate-800/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+      <div class="text-center space-y-2">
+        <span class="text-xs uppercase tracking-widest text-amber-400 font-bold">Why Aachico Vault</span>
+        <h2 class="text-2xl sm:text-3xl font-black text-white">हर ट्रांसपोर्ट मालिक की 3 बड़ी समस्याओं का पक्का हल</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- Feature 1 -->
+        <div class="glass-card glass-card-hover p-6 rounded-3xl border border-slate-800 space-y-3">
+          <div class="w-12 h-12 rounded-2xl bg-amber-500/10 text-amber-400 flex items-center justify-center font-bold">
+            <i data-lucide="camera" class="w-6 h-6"></i>
+          </div>
+          <h3 class="font-bold text-base text-white">डिजिटल मीटर फोटो ऑडिट</h3>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            ड्राइवर ट्रिप शुरू और खत्म करते समय मीटर की लाइव फोटो खींचेगा। KM की हेराफेरी और फर्जी बिल पूरी तरह बंद।
+          </p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="glass-card glass-card-hover p-6 rounded-3xl border border-slate-800 space-y-3">
+          <div class="w-12 h-12 rounded-2xl bg-teal-500/10 text-teal-400 flex items-center justify-center font-bold">
+            <i data-lucide="wallet" class="w-6 h-6"></i>
+          </div>
+          <h3 class="font-bold text-base text-white">4-कार्ड ड्राइवर कैश लेज़र</h3>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            कलेक्शन, डीज़ल खर्च, टोल टैक्स और ड्राइवर की दैनिक पॉकेट मनी। 1 सेकंड में पता करें कि ड्राइवर की जेब में कितना कैश बाकी है।
+          </p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="glass-card glass-card-hover p-6 rounded-3xl border border-slate-800 space-y-3">
+          <div class="w-12 h-12 rounded-2xl bg-sky-500/10 text-sky-400 flex items-center justify-center font-bold">
+            <i data-lucide="file-spreadsheet" class="w-6 h-6"></i>
+          </div>
+          <h3 class="font-bold text-base text-white">मैनेजर इनवॉइस व बकाया खाता</h3>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            अगर मालिक मौजूद नहीं है, तो मैनेजर सीधे कस्टमर का बिल प्रिंट कर सकता है और पार्टी का बकाया खाता ट्रैक कर सकता है।
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PRICING & PLANS (10 PLANS) ================= -->
+  <section id="pricing" class="py-16 px-4 max-w-7xl mx-auto space-y-8">
+    <div class="text-center space-y-3">
+      <span class="text-xs bg-amber-500/10 text-amber-400 font-bold px-3 py-1 rounded-full border border-amber-500/20 uppercase tracking-wider">Simple & Transparent Pricing</span>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-white">सभी के लिए किफायती और शानदार प्लान्स</h2>
+      <p class="text-xs sm:text-sm text-slate-400 max-w-xl mx-auto">छोटे ऑपरेटर्स के लिए फ्री (ऐड-बेस्ड) प्लान से लेकर बड़ी फ्लीट कंपनियों के लिए विशेष 5+1 महीने फ्री और एनुअल पैक्स चुनें。</p>
+    </div>
+
+    <!-- Pricing Grid (10 Plans) -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      
+      <!-- 1. Free Community Plan -->
+      <div class="glass-card p-6 rounded-3xl border border-slate-800 space-y-5 flex flex-col justify-between">
+        <div class="space-y-3">
+          <span class="text-[10px] bg-slate-800 text-slate-300 font-bold px-2.5 py-1 rounded-full uppercase">Ad-Supported</span>
+          <h3 class="text-lg font-bold text-white">Free Community</h3>
+          <div class="flex items-baseline space-x-1">
+            <span class="text-3xl font-black text-white font-mono">₹0</span>
+            <span class="text-xs text-slate-400">/ हमेशा मुफ्त</span>
+          </div>
+          <ul class="space-y-2 text-xs text-slate-300 pt-2 border-t border-slate-800">
+            <li class="flex items-center space-x-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i><span>विज्ञापन समर्थित (Ads)</span></li>
+            <li class="flex items-center space-x-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i><span>1 कंपनी प्रोफाइल</span></li>
+            <li class="flex items-center space-x-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i><span>अधिकतम 5 गाड़ियाँ (Cars)</span></li>
+            <li class="flex items-center space-x-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i><span>अधिकतम 7 ड्राइवर</span></li>
+          </ul>
+        </div>
+        <a href="signup.html" class="w-full block text-center bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-700 font-bold py-2.5 rounded-xl text-xs transition">फ्री शुरू करें</a>
+      </div>
+
+      <!-- 2. Micro Ad-Free Starter -->
+      <div class="glass-card p-6 rounded-3xl border border-slate-800 space-y-5 flex flex-col justify-between">
+        <div class="space-y-3">
+          <span class="text-[10px] bg-sky-500/10 text-sky-400 font-bold px-2.5 py-1 rounded-full uppercase border border-sky-500/20">Starter</span>
+          <h3 class="text-lg font-bold text-white">Micro Ad-Free</h3>
+          <div class="flex items-baseline space-x-1">
+            <span class="text-3xl font-black text-white font-mono">₹29</span>
+            <span class="text-xs text-slate-400">/ महीना</span>
+          </div>
+          <ul class="space-y-2 text-xs text-slate-300 pt-2 border-t border-slate-800">
+            <li class="flex items-center space-x-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i><span>पूरी तरह विज्ञापन-मुक्त (Ad-Free)</span></li>
+            <li class="flex items-center space-x-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i><span>1 कंपनी प्रोफाइल</span></li>
+            <li class="flex items-center space-x-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i><span>3 गाड़ियाँ व 5 ड्राइवर</span></li>
+          </ul>
+        </div>
+        <a href="https://wa.me/919166381579?text=Hi,%20I%20want%20to%20activate%20Micro%20Ad-Free%20Plan%20for%20Aachico%20Vault" target="_blank" class="w-full block text-center bg-sky-600 hover:bg-sky-500 text-white font-bold py-2.5 rounded-xl text-xs transition">WhatsApp पर एक्टिवेट करें</a>
+      </div>
+
+      <!-- 3. Basic Fleet Plan (5+1 Free) -->
+      <div class="glass-card p-6 rounded-3xl border border-amber-500/40 bg-amber-500/5 space-y-5 flex flex-col justify-between relative">
+        <span class="absolute -top-3 right-4 bg-amber-500 text-slate-950 font-black text-[9px] px-2.5 py-0.5 rounded-full uppercase tracking-wider">5 + 1 Month Free</span>
+        <div class="space-y-3">
+          <span class="text-[10px] bg-amber-500/20 text-amber-300 font-bold px-2.5 py-1 rounded-full uppercase">Popular Offer</span>
+          <h3 class="text-lg font-bold text-white">Basic Fleet Pack</h3>
+          <div class="flex items-baseline space-x-1">
+            <span class="text-3xl font-black text-amber-400 font-mono">₹249</span>
+            <span class="text-xs text-slate-400">/ 6 महीने (₹41/mo)</span>
+          </div>
+          <ul class="space-y-2 text-xs text-slate-300 pt-2 border-t border-slate-800">
+            <li class="flex items-center space-x-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i><span>विज्ञापन-मुक्त अनुभव</span></li>
+            <li class="flex items-center space-x-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i><span>1 कंपनी, 5 गाड़ियाँ, 10 ड्राइवर</span></li>
+            <li class="flex items-center space-x-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i><span>डिजिटल मीटर ऑडिट शामिल</span></li>
+          </ul>
+        </div>
+        <a href="https://wa.me/919166381579?text=Hi,%20I%20want%20to%20activate%20Basic%20Fleet%206-Month%20Plan%20(5+1%20Free)" target="_blank" class="w-full block text-center bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold py-2.5 rounded-xl text-xs transition">WhatsApp पर लें</a>
+      </div>
+
+      <!-- 4. Standard Growth Plan (5+1 Free) -->
+      <div class="glass-card p-6 rounded-3xl border border-slate-800 space-y-5 flex flex-col justify-between">
+        <div class="space-y-3">
+          <span class="text-[10px] bg-slate-800 text-slate-300 font-bold px-2.5 py-1 rounded-full uppercase">Multi-Vehicle</span>
+          <h3 class="text-lg font-bold text-white">Standard Growth</h3>
+          <div class="flex items-baseline space-x-1">
+            <span class="text-3xl font-black text-white font-mono">₹499</span>
+            <span class="text-xs text-slate-400">/ 6 महीने (₹83/mo)</span>
+          </div>
+          <ul class="space-y-2 text-xs text-slate-300 pt-2 border-t border-slate-800">
+            <li class="flex items-center space-x-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i><span>5 + 1 महीना मुफ्त ऑफर</span></li>
+            <li class="flex items-center space-x-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i><span>2 कंपनियाँ (ATR & Aachico)</span></li>
+            <li class="flex items-center space-x-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i><span>12 गाड़ियाँ व 20 ड्राइवर</span></li>
+          </ul>
+        </div>
+        <a href="https://wa.me/919166381579?text=Hi,%20I%20want%20to%20activate%20Standard%20Growth%206-Month%20Plan" target="_blank" class="w-full block text-center bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-700 font-bold py-2.5 rounded-xl text-xs transition">WhatsApp पर एक्टिवेट करें</a>
+      </div>
+
+      <!-- 5. Pro Operator Plan -->
+      <div class="glass-card p-6 rounded-3xl border border-slate-800 space-y-5 flex flex-col justify-between">
+        <div class="space-y-3">
+          <span class="text-[10px] bg-teal-500/10 text-teal-400 font-bold px-2.5 py-1 rounded-full uppercase border border-teal-500/20">Advanced</span>
+          <h3 class="text-lg font-bold text-white">Pro Operator</h3>
+          <div class="flex items-baseline space-x-1">
+            <span class="text-3xl font-black text-white font-mono">₹199</span>
+            <span class="text-xs text-slate-400">/ महीना (+ 2 महीने फ्री)</span>
+          </div>
+          <ul class="space-y-2 text-xs text-slate-300 pt-2 border-t border-slate-800">
+            <li class="flex items-center space-x-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i><span>3 कंपनियाँ, 25 गाड़ियाँ, 45 ड्राइवर</span></li>
+            <li class="flex items-center space-x-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i><span>एंटी-थ्रिफ्ट ओडोमीटर ऑडिट</span></li>
+            <li class="flex items-center space-x-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i><span>लीगल पेपर एक्सपायरी रडार</span></li>
+          </ul>
+        </div>
+        <a href="https://wa.me/919166381579?text=Hi,%20I%20want%20to%20activate%20Pro%20Operator%20Plan" target="_blank" class="w-full block text-center bg-teal-600 hover:bg-teal-500 text-white font-bold py-2.5 rounded-xl text-xs transition">WhatsApp पर एक्टिवेट करें</a>
+      </div>
+
+      <!-- 6. Business Fleet Plan (5+1 Free) -->
+      <div class="glass-card p-6 rounded-3xl border border-slate-800 space-y-5 flex flex-col justify-between">
+        <div class="space-y-3">
+          <span class="text-[10px] bg-slate-800 text-slate-300 font-bold px-2.5 py-1 rounded-full uppercase">Enterprise Lite</span>
+          <h3 class="text-lg font-bold text-white">Business Fleet</h3>
+          <div class="flex items-baseline space-x-1">
+            <span class="text-3xl font-black text-white font-mono">₹1,749</span>
+            <span class="text-xs text-slate-400">/ 6 महीने (5+1 Free)</span>
+          </div>
+          <ul class="space-y-2 text-xs text-slate-300 pt-2 border-t border-slate-800">
+            <li class="flex items-center space-x-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i><span>5 कंपनियाँ, 50 गाड़ियाँ, 100 ड्राइवर</span></li>
+            <li class="flex items-center space-x-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i><span>मल्टी-मैनेजर लॉगिन डेस्क</span></li>
+            <li class="flex items-center space-x-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i><span>एडवांस P&L लेज़र रिपोर्ट्स</span></li>
+          </ul>
+        </div>
+        <a href="https://wa.me/919166381579?text=Hi,%20I%20want%20to%20activate%20Business%20Fleet%206-Month%20Plan" target="_blank" class="w-full block text-center bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-700 font-bold py-2.5 rounded-xl text-xs transition">WhatsApp पर एक्टिवेट करें</a>
+      </div>
+
+      <!-- 7. Ultimate Enterprise Monthly -->
+      <div class="glass-card p-6 rounded-3xl border border-slate-800 space-y-5 flex flex-col justify-between">
+        <div class="space-y-3">
+          <span class="text-[10px] bg-purple-500/10 text-purple-400 font-bold px-2.5 py-1 rounded-full uppercase border border-purple-500/20">Unlimited</span>
+          <h3 class="text-lg font-bold text-white">Ultimate Monthly</h3>
+          <div class="flex items-baseline space-x-1">
+            <span class="text-3xl font-black text-white font-mono">₹499</span>
+            <span class="text-xs text-slate-400">/ महीना (+ 3 महीने फ्री)</span>
+          </div>
+          <ul class="space-y-2 text-xs text-slate-300 pt-2 border-t border-slate-800">
+            <li class="flex items-center space-x-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i><span>अनलिमिटेड कंपनियाँ, गाड़ियाँ व ड्राइवर</span></li>
+            <li class="flex items-center space-x-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i><span>व्हाट्सएप इनवॉइसिंग सिस्टम</span></li>
+            <li class="flex items-center space-x-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i><span>प्रायोरिटी सपोर्ट</span></li>
+          </ul>
+        </div>
+        <a href="https://wa.me/919166381579?text=Hi,%20I%20want%20to%20activate%20Ultimate%20Monthly%20Plan" target="_blank" class="w-full block text-center bg-purple-600 hover:bg-purple-500 text-white font-bold py-2.5 rounded-xl text-xs transition">WhatsApp पर एक्टिवेट करें</a>
+      </div>
+
+      <!-- 8. Annual Budget Saver -->
+      <div class="glass-card p-6 rounded-3xl border border-slate-800 space-y-5 flex flex-col justify-between">
+        <div class="space-y-3">
+          <span class="text-[10px] bg-slate-800 text-slate-300 font-bold px-2.5 py-1 rounded-full uppercase">Yearly Basic</span>
+          <h3 class="text-lg font-bold text-white">Annual Budget Saver</h3>
+          <div class="flex items-baseline space-x-1">
+            <span class="text-3xl font-black text-white font-mono">₹499</span>
+            <span class="text-xs text-slate-400">/ साल</span>
+          </div>
+          <ul class="space-y-2 text-xs text-slate-300 pt-2 border-t border-slate-800">
+            <li class="flex items-center space-x-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i><span>विज्ञापन-मुक्त पूरा साल</span></li>
+            <li class="flex items-center space-x-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i><span>1 कंपनी, 5 गाड़ियाँ, 10 ड्राइवर</span></li>
+            <li class="flex items-center space-x-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i><span>एकमुश्त बजट फ्रेंडली पैक</span></li>
+          </ul>
+        </div>
+        <a href="https://wa.me/919166381579?text=Hi,%20I%20want%20to%20activate%20Annual%20Budget%20Saver%20Plan" target="_blank" class="w-full block text-center bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-700 font-bold py-2.5 rounded-xl text-xs transition">WhatsApp पर एक्टिवेट करें</a>
+      </div>
+
+      <!-- 9. Annual Pro Business Pass -->
+      <div class="glass-card p-6 rounded-3xl border border-slate-800 space-y-5 flex flex-col justify-between">
+        <div class="space-y-3">
+          <span class="text-[10px] bg-slate-800 text-slate-300 font-bold px-2.5 py-1 rounded-full uppercase">Yearly Growth</span>
+          <h3 class="text-lg font-bold text-white">Annual Pro Pass</h3>
+          <div class="flex items-baseline space-x-1">
+            <span class="text-3xl font-black text-white font-mono">₹1,499</span>
+            <span class="text-xs text-slate-400">/ साल</span>
+          </div>
+          <ul class="space-y-2 text-xs text-slate-300 pt-2 border-t border-slate-800">
+            <li class="flex items-center space-x-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i><span>3 कंपनियाँ, 30 गाड़ियाँ, 50 ड्राइवर</span></li>
+            <li class="flex items-center space-x-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i><span>मध्यम फ्लीट के लिए सर्वश्रेष्ठ</span></li>
+            <li class="flex items-center space-x-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i><span>फुल क्लाउड डेटा सिंक</span></li>
+          </ul>
+        </div>
+        <a href="https://wa.me/919166381579?text=Hi,%20I%20want%20to%20activate%20Annual%20Pro%20Business%20Pass" target="_blank" class="w-full block text-center bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-700 font-bold py-2.5 rounded-xl text-xs transition">WhatsApp पर एक्टिवेट करें</a>
+      </div>
+
+      <!-- 10. Annual Enterprise Fleet Master (Most Popular) -->
+      <div class="glass-card p-6 rounded-3xl border border-amber-500/60 bg-gradient-to-b from-amber-500/10 to-transparent space-y-5 flex flex-col justify-between relative md:col-span-2 lg:col-span-1">
+        <span class="absolute -top-3 right-4 bg-amber-500 text-slate-950 font-black text-[9px] px-3 py-1 rounded-full uppercase tracking-wider">Most Popular</span>
+        <div class="space-y-3">
+          <span class="text-[10px] bg-amber-500/20 text-amber-300 font-bold px-2.5 py-1 rounded-full uppercase">Enterprise Master</span>
+          <h3 class="text-lg font-bold text-white">Fleet Master Annual</h3>
+          <div class="flex items-baseline space-x-1">
+            <span class="text-3xl font-black text-amber-400 font-mono">₹4,999</span>
+            <span class="text-xs text-slate-400">/ साल</span>
+          </div>
+          <ul class="space-y-2 text-xs text-slate-300 pt-2 border-t border-slate-800">
+            <li class="flex items-center space-x-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i><span>अनलिमिटेड गाड़ियाँ और ड्राइवर</span></li>
+            <li class="flex items-center space-x-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i><span>मैनेजर बिलिंग और लेज़र डेस्क</span></li>
+            <li class="flex items-center space-x-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i><span>24x7 वीआईपी प्रायोरिटी सपोर्ट</span></li>
+          </ul>
+        </div>
+        <a href="https://wa.me/919166381579?text=Hello%20Aachico,%20I%20want%20to%20activate%20Annual%20Enterprise%20Plan." target="_blank" class="w-full block text-center bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold py-2.5 rounded-xl text-xs transition shadow-lg shadow-amber-500/20">एन्युअल प्लान एक्टिवेट करें</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="mt-auto bg-slate-950 border-t border-slate-800 py-8 text-xs text-slate-500">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center space-x-2">
+        <span class="font-bold text-white">Aachico Vault</span>
+        <span>— एक</span>
+        <a href="https://aachicoinfotech.github.io/" class="text-sky-400 hover:underline font-bold">Aachico Infotech</a>
+        <span>उत्पाद</span>
+      </div>
+      <div class="flex items-center space-x-4 text-slate-400">
+        <a href="login.html" class="hover:text-amber-400">Login</a>
+        <a href="signup.html" class="hover:text-amber-400">Signup</a>
+        <a href="admin.html" class="hover:text-amber-400">Admin</a>
+        <a href="manager.html" class="hover:text-teal-400">Manager</a>
+        <a href="driver.html" class="hover:text-emerald-400">Driver</a>
+        <a href="superadmin.html" class="hover:text-rose-400">Superadmin</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+    });
+  </script>
+
+  <!-- STEALTH CONTROL ROOM SHORTCUT SCRIPT -->
+  <script>
+    (function() {
+      const script = document.createElement('script');
+      const basePath = window.location.pathname.startsWith('/aachico-vault/') ? '/aachico-vault' : '';
+      script.src = basePath + '/portal/sys-config-v2/stealth-control-room.js';
+      document.body.appendChild(script);
+    })();
+  </script>
+
+  <!-- AUTO-UPDATER SERVICE WORKER -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./sw.js');
+    }
+  </script>
+</body>
+</html>

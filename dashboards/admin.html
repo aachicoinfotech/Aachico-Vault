@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="hi" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aachico Vault - Admin Control Room</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- Master Theme & Responsive CSS -->
+  <link rel="stylesheet" href="../css/themes.css">
+
+  <!-- Adsterra Monetization Scripts -->
+  <script src="https://pl31151923.profitableratecpmnetwork.com/51/cd/c0/51cdc0777c0281a5bee5cd02bd67d97c.js"></script>
+  <script src="https://pl31151922.profitableratecpmnetwork.com/19/dd/f9/19ddf9ecf7656b128bef1db758fc1ab2.js"></script>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col selection:bg-amber-500 selection:text-slate-950">
+
+  <!-- TOP NAVBAR -->
+  <header class="sticky top-0 z-50 glass-card border-b border-slate-800 bg-slate-950/90">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <a href="../index.html" class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center font-black text-xl border border-amber-500/40 shadow-lg shadow-amber-500/10">
+          V
+        </a>
+        <div>
+          <span class="font-extrabold text-base tracking-wider text-white">AACHICO VAULT ADMIN</span>
+          <p class="text-[10px] text-amber-400 tracking-wider" id="company-subtitle">ATR Udaipur & Aachico Travels</p>
+        </div>
+      </div>
+      <div class="flex items-center space-x-3">
+        <a href="manager.html" class="inline-flex items-center space-x-1 text-xs font-bold bg-slate-900 hover:bg-slate-800 text-slate-200 px-3 py-2 rounded-xl border border-slate-700 transition">
+          <i data-lucide="users" class="w-3.5 h-3.5 text-teal-400"></i>
+          <span>मैनेजर व्यू</span>
+        </a>
+        <a href="../portal/superadmin.html" class="inline-flex items-center space-x-1 text-xs font-bold bg-rose-500/10 hover:bg-rose-500/20 text-rose-300 px-3 py-2 rounded-xl border border-rose-500/30 transition">
+          <i data-lucide="shield-alert" class="w-3.5 h-3.5 text-rose-400"></i>
+          <span>सुपरएडमिन</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow space-y-8 w-full">
+    
+    <!-- STATS GRID -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="glass-card p-5 rounded-2xl border border-slate-800 space-y-1">
+        <p class="text-xs text-slate-400 font-medium">कुल एक्टिव गाड़ियाँ</p>
+        <h3 class="text-2xl font-black text-white font-mono" id="stat-total-vehicles">0</h3>
+        <span class="text-[10px] text-amber-400 font-bold">फ्लीट डेटा सिंक</span>
+      </div>
+      <div class="glass-card p-5 rounded-2xl border border-slate-800 space-y-1">
+        <p class="text-xs text-slate-400 font-medium">आज का कुल कलेक्शन</p>
+        <h3 class="text-2xl font-black text-emerald-400 font-mono" id="stat-total-collection">₹0</h3>
+        <span class="text-[10px] text-emerald-400 font-bold">कैश लेज़र</span>
+      </div>
+      <div class="glass-card p-5 rounded-2xl border border-slate-800 space-y-1">
+        <p class="text-xs text-slate-400 font-medium">कुल डीजल खर्च</p>
+        <h3 class="text-2xl font-black text-rose-400 font-mono" id="stat-total-diesel">₹0</h3>
+        <span class="text-[10px] text-rose-400 font-bold">एंटी-फ्रॉड ऑडिट</span>
+      </div>
+      <div class="glass-card p-5 rounded-2xl border border-slate-800 space-y-1">
+        <p class="text-xs text-slate-400 font-medium">एक्टिव ड्राइवर</p>
+        <h3 class="text-2xl font-black text-sky-400 font-mono" id="stat-total-drivers">0</h3>
+        <span class="text-[10px] text-sky-400 font-bold">पिन प्रोटेक्टेड</span>
+      </div>
+    </div>
+
+    <!-- QUICK ACTIONS & NAVIGATION CARDS -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      
+      <div class="glass-card p-6 rounded-3xl border border-slate-800 space-y-4 lg:col-span-2">
+        <div class="flex items-center space-x-2 border-b border-slate-800 pb-3">
+          <i data-lucide="truck" class="w-5 h-5 text-amber-400"></i>
+          <h3 class="font-bold text-white text-sm">गाड़ी और फ्लीट मैनेजमेंट</h3>
+        </div>
+        <p class="text-xs text-slate-400 leading-relaxed">
+          अपनी गाड़ियों के कागजात (Insurance, Fitness, Permit), ओडोमीटर रीडिंग और लाइव फ्लीट स्टेटस को यहाँ से मैनेज करें।
+        </p>
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
+          <a href="driver.html" target="_blank" class="p-3 bg-slate-900 hover:bg-slate-800 border border-slate-700 rounded-2xl text-center space-y-1 transition">
+            <i data-lucide="smartphone" class="w-5 h-5 text-emerald-400 mx-auto"></i>
+            <span class="block text-xs font-bold text-slate-200">ड्राइवर टर्मिनल</span>
+          </a>
+          <a href="invoice.html" target="_blank" class="p-3 bg-slate-900 hover:bg-slate-800 border border-slate-700 rounded-2xl text-center space-y-1 transition">
+            <i data-lucide="file-text" class="w-5 h-5 text-amber-400 mx-auto"></i>
+            <span class="block text-xs font-bold text-slate-200">टैक्स इनवॉइस</span>
+          </a>
+          <a href="manager.html" class="p-3 bg-slate-900 hover:bg-slate-800 border border-slate-700 rounded-2xl text-center space-y-1 transition">
+            <i data-lucide="bar-chart-3" class="w-5 h-5 text-sky-400 mx-auto"></i>
+            <span class="block text-xs font-bold text-slate-200">P&L लेज़र</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="glass-card p-6 rounded-3xl border border-slate-800 space-y-4">
+        <div class="flex items-center space-x-2 border-b border-slate-800 pb-3">
+          <i data-lucide="shield-check" class="w-5 h-5 text-emerald-400"></i>
+          <h3 class="font-bold text-white text-sm">टेनेंट और प्लान स्थिति</h3>
+        </div>
+        <div class="space-y-2 text-xs text-slate-300">
+          <p><strong>सक्रिय प्लान:</strong> <span id="active-plan-badge" class="text-amber-400 font-bold">Free Community</span></p>
+          <p><strong>डेटाबेस सिंक:</strong> <span class="text-emerald-400 font-bold">ऑनलाइन (Firebase)</span></p>
+          <p><strong>एन्क्रिप्शन:</strong> <span class="text-sky-400 font-bold">Multi-Tenant Isolated</span></p>
+        </div>
+        <div class="pt-2">
+          <a href="../portal/login.html" class="block w-full text-center bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-700 font-bold py-2.5 rounded-xl text-xs transition">
+            लॉगआउट / स्विच अकाउंट
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="mt-auto bg-slate-950 border-t border-slate-800 py-6 text-center text-xs text-slate-500">
+    <p>Aachico Vault Admin Control Room — Secured Enterprise SaaS</p>
+  </footer>
+
+  <!-- Firebase Scripts -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+  <script src="../js/config/firebase-init.js"></script>
+  <script src="../js/auth.js"></script>
+
+  <script type="module">
+    import { fetchAllVehicles } from '../js/modules/fleet.js';
+    import { fetchAllDrivers } from '../js/modules/drivers.js';
+
+    async function loadAdminDashboardData() {
+      // लोकल स्टोरेज से कंपनी का नाम और प्लान सेट करना
+      const savedCompany = localStorage.getItem('aachico_company_name');
+      if (savedCompany) {
+        document.getElementById('company-subtitle').textContent = savedCompany;
+      }
+
+      const savedPlan = localStorage.getItem('aachico_active_plan');
+      if (savedPlan) {
+        document.getElementById('active-plan-badge').textContent = savedPlan;
+      }
+
+      // फायरबेस डेटा लोड करना
+      try {
+        const vRes = await fetchAllVehicles();
+        if (vRes && vRes.success) {
+          document.getElementById('stat-total-vehicles').textContent = vRes.data.length;
+        }
+
+        const dRes = await fetchAllDrivers();
+        if (dRes && dRes.success) {
+          document.getElementById('stat-total-drivers').textContent = dRes.data.length;
+        }
+      } catch (err) {
+        console.log("Dashboard fetch note:", err);
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+      if (window.AachicoAuth) {
+        window.AachicoAuth.protectPage(['admin', 'superadmin']);
+      }
+      loadAdminDashboardData();
+    });
+  </script>
+</body>
+</html>

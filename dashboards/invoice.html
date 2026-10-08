@@ -1,0 +1,61 @@
+// ==========================================================================
+// Aachico Vault - Master Central Database Sync & Offline Queue Engine
+// ==========================================================================
+
+import { db } from '../config/firebase-init.js';
+import { collection, addDoc, getDocs, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
+/**
+ * सेंट्रल डेटाबेस सिंक और ऑफलाइन-फर्स्ट क्यू मैनेजर
+ */
+export const MasterDatabaseSync = {
+  
+  // किसी भी मॉड्यूल का डेटा फायरबेस या लोकल स्टोरेज में सिंक करना
+  async syncRecord(collectionName, recordData) {
+    try {
+      const docRef = await addDoc(collection(db, collectionName), {
+        ...recordData,
+        syncedAt: serverTimestamp(),
+        source: "Aachico Vault Web App"
+      });
+      return { success: true, id: docRef.id, message: "डेटा क्लाउड पर सफलतापूर्वक सिंक हो गया है!" };
+    } catch (error) {
+      console.warn("Cloud sync failed, falling back to local queue:", error);
+      
+      try {
+        const queueKey = `aachico_offline_queue_${collectionName}`;
+        const existingQueue = JSON.parse(localStorage.getItem(queueKey) || '[]');
+        const offlineRecord = { id: 'offline_' + Date.now(), ...recordData, createdAt: new Date().toISOString() };
+        
+        existingQueue.push(offlineRecord);
+        localStorage.setItem(queueKey, JSON.stringify(existingQueue));
+        
+        return { success: true, id: offlineRecord.id, message: "ऑफ़लाइन मोड: डेटा लोकल कतार में सुरक्षित सहेज लिया गया है!" };
+      } catch (localErr) {
+        return { success: false, error: localErr.message };
+      }
+    }
+  },
+
+  // रिमोट और लोकल डेटा को एक साथ फेच करना
+  async fetchRecords(collectionName) {
+    try {
+      const q = query(collection(db, collectionName), orderBy("syncedAt", "desc"));
+      const querySnapshot = await getDocs(q);
+      
+      const records = [];
+      querySnapshot.forEach((doc) => {
+        records.push({ id: doc.id, ...doc.data() });
+      });
+
+      // लोकल कतार के रिकॉर्ड्स भी जोड़ें
+      const localQueue = JSON.parse(localStorage.getItem(`aachico_offline_queue_${collectionName}`) || '[]');
+      
+      return { success: true, data: [...records, ...localQueue] };
+    } catch (error) {
+      console.error(`Error fetching ${collectionName}:`, error);
+      const localQueue = JSON.parse(localStorage.getItem(`aachico_offline_queue_${collectionName}`) || '[]');
+      return { success: true, data: localQueue, message: "ऑफ़लाइन मोड डेटा दिखाया जा रहा है।" };
+    }
+  }
+};
